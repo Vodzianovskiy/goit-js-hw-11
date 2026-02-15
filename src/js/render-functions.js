@@ -10,7 +10,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 
 export default {
   createGallery(images) {
-    const markup = images.hits
+    const markup = images
       .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
         <a href="${largeImageURL}">
           <div class="photo-card">
@@ -26,7 +26,7 @@ export default {
       `)
       .join('');
 
-    galleryRef.innerHTML = ''; 
+    galleryRef.innerHTML = '';
     galleryRef.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
   },
@@ -36,10 +36,10 @@ export default {
   },
 
   showLoader() {
-    loaderRef.classList.remove('is-hidden'); 
+    loaderRef.classList.remove('is-hidden');
   },
 
   hideLoader() {
-    loaderRef.classList.add('is-hidden'); 
+    loaderRef.classList.add('is-hidden');
   },
 };

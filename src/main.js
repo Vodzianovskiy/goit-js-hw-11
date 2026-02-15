@@ -13,7 +13,9 @@ function onSubmit(e) {
   
   const query = inputRef.value.trim();
   if (!query) {
-    iziToast.error({ message: 'Loading images, please wait...' });
+    iziToast.error({ 
+      message: 'Please enter a search query!' 
+    });
     return;
   }
 
@@ -26,11 +28,9 @@ function onSubmit(e) {
       render.hideLoader();
       
       if (data.hits.length === 0) {
-        iziToast.info({
+        iziToast.error({
           message: 'Sorry, there are no images matching your search query. Please try again!',
-          color:'red',
-          position: 'topRight',
-          timeout: 3000
+          position: 'topRight'
         });
         return;
       }
@@ -38,9 +38,7 @@ function onSubmit(e) {
       render.createGallery(data);
       iziToast.success({ 
         message: `Hooray! We found ${data.hits.length} images.`, 
-        color: 'green',
-        position: 'topRight',
-        timeout: 3000
+        position: 'topRight'
       });
     })
     .catch(error => {
