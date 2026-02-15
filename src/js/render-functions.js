@@ -2,10 +2,11 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryRef = document.querySelector('.gallery');
+const loaderRef = document.querySelector('.loader');
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
-}); 
+});
 
 export default {
   createGallery(images) {
@@ -23,8 +24,9 @@ export default {
           </div>
         </a>
       `)
-      .join(''); 
+      .join('');
 
+    galleryRef.innerHTML = ''; 
     galleryRef.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
   },
@@ -34,10 +36,10 @@ export default {
   },
 
   showLoader() {
-    document.body.classList.add('loading'); 
+    loaderRef.classList.remove('is-hidden'); 
   },
 
   hideLoader() {
-    document.body.classList.remove('loading');
+    loaderRef.classList.add('is-hidden'); 
   },
 };
